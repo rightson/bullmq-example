@@ -1,3 +1,3 @@
 # Bullmq example code
 
-Just an example
+This is just a working example.
