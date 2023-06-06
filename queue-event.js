@@ -1,4 +1,4 @@
-import { Queue, QueueEvents } from 'bullmq';
+import { QueueEvents } from 'bullmq';
 import { queueName, connection } from './queue.js';
 
 const queueEvents = new QueueEvents(queueName, { connection });
@@ -11,11 +11,9 @@ queueEvents.on('active', ({ jobId, prev }) => {
     console.log(`Job ${jobId} is now active; previous status was ${prev}`);
 });
 
-queueEvents.on('completed', async ({ jobId, returnvalue }) => {
+queueEvents.on('completed', ({ jobId, returnvalue }) => {
     console.log(`${jobId} has completed and returned`);
-    console.log(returnvalue);
-    const counts = await new Queue(queueName, { connection }).getJobCounts('wait', 'completed', 'failed');
-    console.log(counts);
+    console.log(returnvalue)
 });
 
 queueEvents.on('failed', ({ jobId, failedReason }) => {
