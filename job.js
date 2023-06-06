@@ -9,16 +9,13 @@ async function addJobs() {
     const job = await queue.add(
         'JobName',
         data,
-        // { removeOnComplete: true }
+        { removeOnComplete: false }
     );
     console.log(`Job id = ${job.id}`);
     const counts = await queue.getJobCounts('wait', 'completed', 'failed');
     console.log(counts);
-    // console.log(job);
     await queue.disconnect();
     await queue.close();
-    // queue.clean()
-    // queue.drain()
 }
 
 await addJobs()
