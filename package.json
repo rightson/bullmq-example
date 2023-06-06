@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "bullmq": "^3.15.0",
+    "ts-node": "^10.9.1"
+  },
+  "type": "module"
+}
